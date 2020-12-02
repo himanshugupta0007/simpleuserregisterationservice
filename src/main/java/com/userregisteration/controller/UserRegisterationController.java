@@ -10,6 +10,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.MessageSource;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,14 +38,17 @@ public class UserRegisterationController {
 
 	ApplicationEventPublisher eventPublisher;
 
+	MessageSource messages;
+
 	/**
 	 * @param userProcessor
 	 */
 	@Autowired
 	public UserRegisterationController(final UserRegisterationProcessor userProcessor,
-			final ApplicationEventPublisher eventPublisher) {
+			final ApplicationEventPublisher eventPublisher, final MessageSource messages) {
 		this.userProcessor = userProcessor;
 		this.eventPublisher = eventPublisher;
+		this.messages = messages;
 	}
 
 	/**
@@ -78,6 +82,27 @@ public class UserRegisterationController {
 		} else {
 			return "Invalid Token";
 		}
+	}
 
+	/**
+	 * @param userPhoneNumber
+	 * @return RegisterResponseEnvelope
+	 */
+	@PostMapping("/resetPassword")
+	public RegisterResponseEnvelope resetPassword(@RequestParam("phoneNumber") String userPhoneNumber,
+			HttpServletRequest request) {
+		this.userProcessor.resetPassword(userPhoneNumber, request);
+		return new RegisterResponseEnvelope(
+				messages.getMessage("message.resetPasswordEmail", null, Locale.getDefault()), "");
+	}
+
+	/**
+	 * @param token
+	 * @return RegisterResponseEnvelope
+	 */
+	@GetMapping("/validatePasswordToken")
+	public RegisterResponseEnvelope validatePasswordToken(@RequestParam("token") String token) {
+		String tokenValidation = this.userProcessor.validatePasswordToken(token);
+		return new RegisterResponseEnvelope("Your Token is", tokenValidation);
 	}
 }

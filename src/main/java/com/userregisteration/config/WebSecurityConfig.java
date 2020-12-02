@@ -35,8 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 
-	
-	/** 
+	/**
 	 * @return DaoAuthenticationProvider
 	 */
 	@Bean
@@ -47,8 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return authProvider;
 	}
 
-	
-	/** 
+	/**
 	 * @param auth
 	 * @throws Exception
 	 */
@@ -57,8 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.authenticationProvider(authenticationProvider());
 	}
 
-	
-	/** 
+	/**
 	 * @param httpSecurity
 	 * @throws Exception
 	 */

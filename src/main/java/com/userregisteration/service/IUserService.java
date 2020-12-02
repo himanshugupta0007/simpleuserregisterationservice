@@ -20,6 +20,12 @@ public interface IUserService {
 	 
     VerificationToken getVerificationToken(String VerificationToken);
     
-    User getUser(String verificationToken);
+	User getUser(String verificationToken);
+	
+	User findUserByPhoneNumber(String argPhoneNumber);
+
+	public void createPasswordResetToken(User user, String token);
+
+	public String validatePasswordToken(String token);
 
 }
