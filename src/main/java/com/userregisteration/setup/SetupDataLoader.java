@@ -43,6 +43,10 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	
+	/** 
+	 * @param event
+	 */
 	@Override
 	@Transactional
 	public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -68,6 +72,11 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 		alreadySetup = true;
 	}
 	
+	
+	/** 
+	 * @param name
+	 * @return Privilege
+	 */
 	@Transactional
     Privilege createPrivilegeIfNotFound(String name) {
  
@@ -79,7 +88,13 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         return privilege;
     }
  
-    @Transactional
+    
+	/** 
+	 * @param name
+	 * @param privileges
+	 * @return Role
+	 */
+	@Transactional
     Role createRoleIfNotFound(
       String name, Collection<Privilege> privileges) {
  

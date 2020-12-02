@@ -8,12 +8,20 @@ import com.userregisteration.modal.User;
 
 public class UserRegisterationListener {
 
+	
+	/** 
+	 * @param arguser
+	 */
 	@PrePersist
 	public void prePersist(User arguser) {
 		arguser.setCreatedOn(LocalDateTime.now());
 		arguser.setUpdatedOn(LocalDateTime.now());
 	}
 
+	
+	/** 
+	 * @param argUser
+	 */
 	@PreUpdate
 	public void preUpdate(User argUser) {
 		argUser.setUpdatedOn(LocalDateTime.now());

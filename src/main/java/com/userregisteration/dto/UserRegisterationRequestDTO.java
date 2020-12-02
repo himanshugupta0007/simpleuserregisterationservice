@@ -28,6 +28,10 @@ public class UserRegisterationRequestDTO {
 		this.userDTO = userDTO;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	@Override
 	public String toString() {
 		return "UserRegisterationRequestDTO [userDTO=" + userDTO + "]";

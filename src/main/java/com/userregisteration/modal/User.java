@@ -68,66 +68,130 @@ public class User {
 		this.enabled = false;
 	}
 
+	
+	/** 
+	 * @return Long
+	 */
 	public Long getId() {
 		return id;
 	}
 
+	
+	/** 
+	 * @param id
+	 */
 	public void setId(final Long id) {
 		this.id = id;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	public String getFirstName() {
 		return firstName;
 	}
 
+	
+	/** 
+	 * @param firstName
+	 */
 	public void setFirstName(final String firstName) {
 		this.firstName = firstName;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	public String getLastName() {
 		return lastName;
 	}
 
+	
+	/** 
+	 * @param lastName
+	 */
 	public void setLastName(final String lastName) {
 		this.lastName = lastName;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	public String getPassword() {
 		return password;
 	}
 
+	
+	/** 
+	 * @param password
+	 */
 	public void setPassword(final String password) {
 		this.password = password;
 	}
 
+	
+	/** 
+	 * @return Collection<Role>
+	 */
 	public Collection<Role> getRoles() {
 		return roles;
 	}
 
+	
+	/** 
+	 * @param roles
+	 */
 	public void setRoles(final Collection<Role> roles) {
 		this.roles = roles;
 	}
 
+	
+	/** 
+	 * @return boolean
+	 */
 	public boolean isEnabled() {
 		return enabled;
 	}
 
+	
+	/** 
+	 * @param enabled
+	 */
 	public void setEnabled(final boolean enabled) {
 		this.enabled = enabled;
 	}
 
+	
+	/** 
+	 * @return boolean
+	 */
 	public boolean isUsing2FA() {
 		return isUsing2FA;
 	}
 
+	
+	/** 
+	 * @param isUsing2FA
+	 */
 	public void setUsing2FA(boolean isUsing2FA) {
 		this.isUsing2FA = isUsing2FA;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	public String getSecret() {
 		return secret;
 	}
 
+	
+	/** 
+	 * @param secret
+	 */
 	public void setSecret(String secret) {
 		this.secret = secret;
 	}
@@ -188,6 +252,10 @@ public class User {
 		this.updatedOn = updatedOn;
 	}
 
+	
+	/** 
+	 * @return int
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -196,6 +264,11 @@ public class User {
 		return result;
 	}
 
+	
+	/** 
+	 * @param obj
+	 * @return boolean
+	 */
 	@Override
 	public boolean equals(final Object obj) {
 		if (this == obj) {
@@ -214,6 +287,10 @@ public class User {
 		return true;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	@Override
 	public String toString() {
 		final StringBuilder builder = new StringBuilder();

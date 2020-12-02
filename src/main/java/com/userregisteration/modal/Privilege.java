@@ -73,6 +73,10 @@ public class Privilege {
 		this.roles = roles;
 	}
 
+	
+	/** 
+	 * @return int
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -81,6 +85,11 @@ public class Privilege {
 		return result;
 	}
 
+	
+	/** 
+	 * @param obj
+	 * @return boolean
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -108,6 +117,10 @@ public class Privilege {
 		return true;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	@Override
 	public String toString() {
 		return "Privilege [id=" + id + ", name=" + name + ", roles=" + roles + "]";

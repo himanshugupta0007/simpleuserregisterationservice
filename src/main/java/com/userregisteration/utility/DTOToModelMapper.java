@@ -18,6 +18,12 @@ public class DTOToModelMapper {
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
+	
+	/** 
+	 * @param argUser
+	 * @param passEncoder
+	 * @return User
+	 */
 	public static User convertUserDTOToModal(UserDTO argUser, PasswordEncoder passEncoder) {
 		User user = new User();
 		user.setEmailAddress(argUser.getEmailaddress());

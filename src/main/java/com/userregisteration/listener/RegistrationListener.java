@@ -32,6 +32,10 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
 	@Autowired
 	private JavaMailSender mailSender;
 
+	
+	/** 
+	 * @param event
+	 */
 	@Override
 	public void onApplicationEvent(OnRegistrationCompleteEvent event) {
 

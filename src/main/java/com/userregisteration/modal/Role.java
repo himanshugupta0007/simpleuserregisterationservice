@@ -36,40 +36,76 @@ public class Role {
         this.name = name;
     }
 
+    
+    /** 
+     * @return Long
+     */
     //
 
     public Long getId() {
         return id;
     }
 
+    
+    /** 
+     * @param id
+     */
     public void setId(final Long id) {
         this.id = id;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getName() {
         return name;
     }
 
+    
+    /** 
+     * @param name
+     */
     public void setName(final String name) {
         this.name = name;
     }
 
+    
+    /** 
+     * @return Collection<User>
+     */
     public Collection<User> getUsers() {
         return users;
     }
 
+    
+    /** 
+     * @param users
+     */
     public void setUsers(final Collection<User> users) {
         this.users = users;
     }
 
+    
+    /** 
+     * @return Collection<Privilege>
+     */
     public Collection<Privilege> getPrivileges() {
         return privileges;
     }
 
+    
+    /** 
+     * @param privileges
+     */
     public void setPrivileges(final Collection<Privilege> privileges) {
         this.privileges = privileges;
     }
 
+    
+    /** 
+     * @return int
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -78,6 +114,11 @@ public class Role {
         return result;
     }
 
+    
+    /** 
+     * @param obj
+     * @return boolean
+     */
     @Override
     public boolean equals(final Object obj) {
         if (this == obj) {
@@ -96,6 +137,10 @@ public class Role {
         return true;
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();

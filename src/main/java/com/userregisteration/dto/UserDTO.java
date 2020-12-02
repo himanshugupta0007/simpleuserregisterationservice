@@ -111,6 +111,10 @@ public class UserDTO {
 		this.emailaddress = emailaddress;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	@Override
 	public String toString() {
 		return "UserDTO [firstname=" + firstname + ", lastname=" + lastname + ", password=" + password

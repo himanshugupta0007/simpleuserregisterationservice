@@ -31,6 +31,14 @@ public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationF
 	@Autowired
     private LocaleResolver localeResolver;
 	
+	
+	/** 
+	 * @param request
+	 * @param response
+	 * @param exception
+	 * @throws IOException
+	 * @throws ServletException
+	 */
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {

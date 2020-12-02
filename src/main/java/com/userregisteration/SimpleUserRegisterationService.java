@@ -8,6 +8,10 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 @SpringBootApplication
 public class SimpleUserRegisterationService {
 
+	
+	/** 
+	 * @return ResourceBundleMessageSource
+	 */
 	@Bean(name="messageSource")//wont work without the bean name
 	public ResourceBundleMessageSource bundleMessageSource() {
 	    ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
@@ -15,6 +19,10 @@ public class SimpleUserRegisterationService {
 	    return messageSource;
 	}
 	
+	
+	/** 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(SimpleUserRegisterationService.class, args);
 	}

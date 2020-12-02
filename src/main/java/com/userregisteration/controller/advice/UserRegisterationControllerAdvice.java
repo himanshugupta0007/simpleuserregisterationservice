@@ -18,6 +18,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class UserRegisterationControllerAdvice {
 
+	
+	/** 
+	 * @param exception
+	 * @return ResponseEntity<RegisterResponseEnvelope>
+	 */
 	@ExceptionHandler(UserAlreadyExistException.class)
 	public ResponseEntity<RegisterResponseEnvelope> handleRegisterUserException(final UserAlreadyExistException exception) {
 		RegisterResponseEnvelope response = new RegisterResponseEnvelope("User Already Present",

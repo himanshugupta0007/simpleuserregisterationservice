@@ -40,6 +40,11 @@ public class UserService implements IUserService {
 		this.tokenRepo = tokenRepo;
 	}
 
+	
+	/** 
+	 * @param argUser
+	 * @return User
+	 */
 	@Transactional
 	@Override
 	public User registeruser(User argUser) {
@@ -52,11 +57,21 @@ public class UserService implements IUserService {
 
 	}
 
+	
+	/** 
+	 * @param phone_number
+	 * @return boolean
+	 */
 	@Override
 	public boolean userExists(String phone_number) {
 		return userRepo.findByPhoneNumber(phone_number) != null;
 	}
 
+	
+	/** 
+	 * @param user
+	 * @param token
+	 */
 	@Override
 	public void createVerificationToken(User user, String token) {
 		VerificationToken myToken = new VerificationToken(token, user);
@@ -64,11 +79,21 @@ public class UserService implements IUserService {
 		
 	}
 
+	
+	/** 
+	 * @param VerificationToken
+	 * @return VerificationToken
+	 */
 	@Override
 	public VerificationToken getVerificationToken(String VerificationToken) {
 		return tokenRepo.findByToken(VerificationToken);
 	}
 
+	
+	/** 
+	 * @param verificationToken
+	 * @return User
+	 */
 	@Override
 	public User getUser(String verificationToken) {
 		User user = tokenRepo.findByToken(verificationToken).getUser();

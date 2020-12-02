@@ -38,6 +38,11 @@ public class UserRegisterationProcessor {
 		this.passEncoder = passwordEncoder;
 	}
 
+	
+	/** 
+	 * @param argUserDTO
+	 * @return User
+	 */
 	public User createUser(UserRegisterationRequestDTO argUserDTO) {
 		UserDTO userDTO = argUserDTO.getUserDTO();
 		if (this.userService.userExists(userDTO.getPhonenumber())) {
@@ -49,6 +54,12 @@ public class UserRegisterationProcessor {
 		}
 	}
 
+	
+	/** 
+	 * @param locale
+	 * @param token
+	 * @return boolean
+	 */
 	public boolean confirmRegisteration(Locale locale, String token) {
 		boolean isUserEnabled = true;
 		VerificationToken verificationToken = userService.getVerificationToken(token);
