@@ -7,20 +7,15 @@ import java.util.Arrays;
 
 import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
-import com.userregisteration.dto.UserDTO;
-import com.userregisteration.exception.UserAlreadyExistException;
-import com.userregisteration.modal.Role;
 import com.userregisteration.modal.User;
 import com.userregisteration.modal.VerificationToken;
 import com.userregisteration.repo.RoleRepository;
 import com.userregisteration.repo.UserRepository;
 import com.userregisteration.repo.VerificationTokenRepository;
 import com.userregisteration.service.IUserService;
-import com.userregisteration.utility.DTOToModelMapper;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * @author himanshugupta

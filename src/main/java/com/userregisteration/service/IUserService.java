@@ -3,8 +3,6 @@
  */
 package com.userregisteration.service;
 
-import com.userregisteration.dto.UserDTO;
-import com.userregisteration.exception.UserAlreadyExistException;
 import com.userregisteration.modal.User;
 import com.userregisteration.modal.VerificationToken;
 

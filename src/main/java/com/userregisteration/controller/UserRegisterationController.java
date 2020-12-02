@@ -34,39 +34,50 @@ import com.userregisteration.responseenvelope.RegisterResponseEnvelope;
 public class UserRegisterationController {
 
 	UserRegisterationProcessor userProcessor;
-	
+
 	ApplicationEventPublisher eventPublisher;
 
 	/**
 	 * @param userProcessor
 	 */
 	@Autowired
-	public UserRegisterationController(final UserRegisterationProcessor userProcessor, final ApplicationEventPublisher eventPublisher) {
+	public UserRegisterationController(final UserRegisterationProcessor userProcessor,
+			final ApplicationEventPublisher eventPublisher) {
 		this.userProcessor = userProcessor;
 		this.eventPublisher = eventPublisher;
 	}
 
+	/**
+	 * @param argUserDTO
+	 * @param request
+	 * @return RegisterResponseEnvelope
+	 */
 	@PostMapping(value = "/registerUser", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public RegisterResponseEnvelope registerUser(@RequestBody @Valid UserRegisterationRequestDTO argUserDTO, HttpServletRequest request) {
+	public RegisterResponseEnvelope registerUser(@RequestBody @Valid UserRegisterationRequestDTO argUserDTO,
+			HttpServletRequest request) {
 		User registeredUser = this.userProcessor.createUser(argUserDTO);
 		String appURL = request.getContextPath();
 		eventPublisher.publishEvent(new OnRegistrationCompleteEvent(appURL, request.getLocale(), registeredUser));
 		return new RegisterResponseEnvelope("Success: " + registeredUser.getId(), "");
 	}
-	
+
+	/**
+	 * @param request
+	 * @param token
+	 * @return String
+	 */
 	@GetMapping("/regitrationConfirm")
 	public String confirmRegisteration(WebRequest request, @RequestParam("token") String token) {
-		
+
 		Locale locale = request.getLocale();
-		if(token == null)
-		{
+		if (token == null) {
 			return "Token is null";
 		}
-		if(userProcessor.confirmRegisteration(locale, token)) {
+		if (userProcessor.confirmRegisteration(locale, token)) {
 			return "User is Enabled";
-		}else {
+		} else {
 			return "Invalid Token";
 		}
-		
+
 	}
 }

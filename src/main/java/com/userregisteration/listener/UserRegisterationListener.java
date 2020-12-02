@@ -1,8 +1,6 @@
 package com.userregisteration.listener;
 
 import java.time.LocalDateTime;
-
-import javax.persistence.Column;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 

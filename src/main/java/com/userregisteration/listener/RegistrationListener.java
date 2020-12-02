@@ -21,7 +21,7 @@ import com.userregisteration.service.IUserService;
  *
  */
 @Component
-public class RegistrationListener implements ApplicationListener<OnRegistrationCompleteEvent> {
+public class RegistrationListener implements ApplicationListener<OnRegistrationCompleteEvent>{
 
 	@Autowired
 	private IUserService service;
