@@ -8,14 +8,12 @@ import java.util.Locale;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
-
+import com.userregisteration.dto.PasswordDto;
 import com.userregisteration.dto.UserDTO;
 import com.userregisteration.dto.UserRegisterationRequestDTO;
+import com.userregisteration.exception.InvalidUserToken;
 import com.userregisteration.exception.UserAlreadyExistException;
 import com.userregisteration.exception.UserNotFoundException;
 import com.userregisteration.modal.User;
@@ -23,6 +21,11 @@ import com.userregisteration.modal.VerificationToken;
 import com.userregisteration.service.IUserService;
 import com.userregisteration.utility.DTOToModelMapper;
 import com.userregisteration.utility.UserRegisterationUtility;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
 /**
  * @author himanshugupta
@@ -120,6 +123,25 @@ public class UserRegisterationProcessor {
 	 */
 	public String validatePasswordToken(String token) {
 		return this.userService.validatePasswordToken(token);
+	}
+
+	/**
+	 * @param passwordDto
+	 */
+	public void saveResetPassword(@Valid PasswordDto passwordDto) {
+
+		String isTokenValid = this.validatePasswordToken(passwordDto.getToken());
+
+		if (!isTokenValid.equalsIgnoreCase("Valid")) {
+			throw new InvalidUserToken("Password Token in Invalid");
+		}
+
+		User user = userService.getUserByPasswordResetToken(passwordDto.getToken());
+		if (user != null) {
+			userService.changeUserPassword( this.passEncoder,user, passwordDto.getNewPassword());
+		} else {
+			throw new UserNotFoundException("User is not present");
+		}
 	}
 
 }

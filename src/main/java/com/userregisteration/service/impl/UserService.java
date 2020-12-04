@@ -18,6 +18,7 @@ import com.userregisteration.repo.VerificationTokenRepository;
 import com.userregisteration.service.IUserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -124,8 +125,7 @@ public class UserService implements IUserService {
 	 * @return String
 	 */
 	@Override
-	public String validatePasswordToken(String token) 
-	{
+	public String validatePasswordToken(String token) {
 		final PasswordResetToken passToken = passwordTokenRepository.findByToken(token);
 		return !isTokenFound(passToken) ? "invalidToken" : isTokenExpired(passToken) ? "expired" : "Valid";
 	}
@@ -146,4 +146,26 @@ public class UserService implements IUserService {
 		final Calendar cal = Calendar.getInstance();
 		return passToken.getExpiryDate().before(cal.getTime());
 	}
+
+	/**
+	 * @param token
+	 * @return User
+	 */
+	@Override
+	public User getUserByPasswordResetToken(String token) {
+		PasswordResetToken passToken = this.passwordTokenRepository.findByToken(token);
+		return passToken.getUser();
+	}
+
+	/**
+	 * @param passEncoder
+	 * @param user
+	 * @param newPassword
+	 */
+	@Override
+	public void changeUserPassword(PasswordEncoder passEncoder, User user, String newPassword) {
+		user.setPassword(passEncoder.encode(newPassword));
+		this.userRepo.save(user);
+	}
+
 }

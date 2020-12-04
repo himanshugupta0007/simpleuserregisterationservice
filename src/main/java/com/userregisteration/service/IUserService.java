@@ -6,6 +6,8 @@ package com.userregisteration.service;
 import com.userregisteration.modal.User;
 import com.userregisteration.modal.VerificationToken;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 /**
  * @author himanshugupta
  *
@@ -27,5 +29,9 @@ public interface IUserService {
 	public void createPasswordResetToken(User user, String token);
 
 	public String validatePasswordToken(String token);
+
+	public User getUserByPasswordResetToken(String token);
+
+	public void changeUserPassword(PasswordEncoder passEncoder, User user, String newPassword);
 
 }

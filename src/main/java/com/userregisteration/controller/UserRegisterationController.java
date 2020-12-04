@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
+import com.userregisteration.dto.PasswordDto;
 import com.userregisteration.dto.UserRegisterationRequestDTO;
 import com.userregisteration.event.OnRegistrationCompleteEvent;
 import com.userregisteration.modal.User;
@@ -104,5 +105,11 @@ public class UserRegisterationController {
 	public RegisterResponseEnvelope validatePasswordToken(@RequestParam("token") String token) {
 		String tokenValidation = this.userProcessor.validatePasswordToken(token);
 		return new RegisterResponseEnvelope("Your Token is", tokenValidation);
+	}
+
+	@PostMapping("/savePassword")
+	public RegisterResponseEnvelope saveResetPassword(@Valid @RequestBody PasswordDto passwordDto){
+		this.userProcessor.saveResetPassword(passwordDto);
+		return new RegisterResponseEnvelope("Password Reset Successfull", "");
 	}
 }
